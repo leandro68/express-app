@@ -34,4 +34,4 @@ jobs:
       with:
         serviceId: ${{ secrets.MY_RENDER_SERVICE_ID }}
         apiKey: ${{ secrets.MY_RENDER_API_KEY }}
-          #deployHookURL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        deployHookURL: ${{ secrets.MY_RENDER_DEPLOY_HOOK_URL }}
