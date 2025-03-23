@@ -29,8 +29,8 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/express-app:latest
     - name: Deploy to production in Render
-        uses: johnbeynon/render-deploy-action@v0.0.8
-        with:
-          service-id: ${{ secrets.MY_RENDER_SERVICE_ID }}
-          api-key: ${{ secrets.MY_RENDER_API_KEY }}
-          wait-for-success: true
+      uses: johnbeynon/render-deploy-action@v0.0.8
+      with:
+        service-id: ${{ secrets.MY_RENDER_SERVICE_ID }}
+        api-key: ${{ secrets.MY_RENDER_API_KEY }}
+        wait-for-success: true
