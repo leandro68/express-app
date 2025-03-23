@@ -1,11 +1,8 @@
-name: Build and Push Docker Image
+name: Build and Push Docker Image, and Deploy to Render
 
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches: 
       - main
 
 jobs:
@@ -31,9 +28,13 @@ jobs:
         context: .
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/express-app:latest
-    - name: Deploy to production in Render
-      uses: johnbeynon/render-deploy-action@v0.0.8
-      with:
-        service-id: ${{ secrets.MY_RENDER_SERVICE_ID }}
-        api-key: ${{ secrets.MY_RENDER_API_KEY }}
-        wait-for-success: true
+
+    - name: Install Render CLI
+      run: |
+        npm install -g render-cli
+
+    - name: Deploy to Render
+      env:
+        RENDER_TOKEN: ${{ secrets.MY_RENDER_SERVICE_ID }}
+      run: |
+        render deploy service ${{ secrets.MY_RENDER_API_KEY }}
